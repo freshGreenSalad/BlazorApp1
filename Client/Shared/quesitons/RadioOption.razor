@@ -1,0 +1,23 @@
+﻿<div>
+    <div class="row">
+        <div class="col-9">
+            <RadzenText>@Answer</RadzenText>
+        </div>
+        <div class="col-1">
+            <RadzenButton Click=@onclick>
+                <RadzenIcon Icon="close"></RadzenIcon>
+            </RadzenButton>
+        </div>
+    </div>
+</div>
+
+@code {
+   // [Parameter]
+   // public string? Number { get; set; }
+
+    [Parameter]
+    public EventCallback onclick { get; set;  }
+
+    [Parameter]
+	public string? Answer { get; set; }
+}
