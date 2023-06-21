@@ -1,0 +1,29 @@
+﻿@using BlazorApp1.Shared.questionTypes
+@using BlazorApp1.Shared
+@inject viewModel viewModel
+
+<div class="p-1">
+	<RadzenCard>
+		<div class="row">
+			<div class="col-6">
+				<RadzenText>@questionType.ToString()</RadzenText>
+			</div>
+			<div class="col-2"></div>
+			<div class="col-3">
+				<RadzenButton Click=@onClick>
+					<RadzenIcon Icon="add"></RadzenIcon>
+				</RadzenButton>
+			</div>
+		</div>
+	</RadzenCard>
+</div>
+
+@code {
+	[Parameter]
+	public QuestionType questionType { get; set; }
+
+	[Parameter]
+	public EventCallback onClick { get; set; }
+
+	//private Question question = new Question();
+}

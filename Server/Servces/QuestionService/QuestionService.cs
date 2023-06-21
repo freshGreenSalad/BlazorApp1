@@ -10,9 +10,15 @@
 
         public async Task<List<Question>> GetAll()
         {
-            var question = await _context.Questions.ToListAsync();
-
-            return question;
+            if (_context.Questions == null)
+            {
+                return new List<Question>();
+            }
+            else
+            {
+                var question = await _context.Questions.ToListAsync();
+                return question;
+            }
         }
     }
 }

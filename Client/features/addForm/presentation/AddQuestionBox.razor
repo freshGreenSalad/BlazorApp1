@@ -1,0 +1,29 @@
+﻿@using BlazorApp1.Shared
+@using BlazorApp1.Client.features.addForm.presentation.quesitons
+
+@inject viewModel viewModel
+
+<div>
+	<AddQuestionCard questionType=QuestionType.TextQuestion onClick=@(args => viewModel.addQuestionToForm())/>
+    <AddQuestionCard questionType=QuestionType.NumberQuestion />
+    <AddQuestionCard questionType=QuestionType.MultiChoice />
+    <AddQuestionCard questionType=QuestionType.RadioQuestion />
+    <AddQuestionCard questionType=QuestionType.BooleanQuestion />
+</div>
+
+@code {
+	[Parameter]
+    public string Class { get; set; } = "";
+
+    private string fixedClass = "";
+
+    private string Classes
+    {
+        get
+        {
+            return $"{fixedClass} {Class}";
+        }
+    }
+
+}
+

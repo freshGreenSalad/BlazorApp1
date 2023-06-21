@@ -1,0 +1,10 @@
+﻿@using BlazorApp1.Shared
+@inject viewModel viewModel
+
+<RadzenCard>
+    @foreach (Question q in viewModel.formOfQuestions)
+    {
+        <p>yo questions @q.question</p>
+    }
+</RadzenCard>
+
