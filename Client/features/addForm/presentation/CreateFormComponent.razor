@@ -1,0 +1,20 @@
+﻿@using BlazorApp1.Client.features.addForm.presentation
+@using BlazorApp1.Shared
+
+<div class="row">
+    <div class="col-8">
+        <QuestionHolder questionList=@questionList/>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-3">
+        <AddQuestionBox onClick=@onClick />
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<QuestionType> onClick { get; set; }
+
+    [Parameter]
+    public List<Question> questionList { get; set; }
+}

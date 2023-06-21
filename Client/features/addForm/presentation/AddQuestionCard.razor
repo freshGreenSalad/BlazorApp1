@@ -1,6 +1,5 @@
 ﻿@using BlazorApp1.Shared.questionTypes
 @using BlazorApp1.Shared
-@inject viewModel viewModel
 
 <div class="p-1">
 	<RadzenCard>
@@ -10,7 +9,7 @@
 			</div>
 			<div class="col-2"></div>
 			<div class="col-3">
-				<RadzenButton Click=@onClick>
+				<RadzenButton Click=@invokeClick>
 					<RadzenIcon Icon="add"></RadzenIcon>
 				</RadzenButton>
 			</div>
@@ -23,7 +22,9 @@
 	public QuestionType questionType { get; set; }
 
 	[Parameter]
-	public EventCallback onClick { get; set; }
+	public EventCallback<QuestionType> onClick { get; set; }
+
+	private async Task invokeClick() => await onClick.InvokeAsync(questionType);
 
 	//private Question question = new Question();
 }

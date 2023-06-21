@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorApp1.Shared.questionTypes
 {
-    public class NumberQuestion : Question
+    public class MultiChoiceQuestion : Question
     {
     }
 }

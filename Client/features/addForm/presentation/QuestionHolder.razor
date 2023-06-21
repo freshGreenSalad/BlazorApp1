@@ -1,10 +1,36 @@
-﻿@using BlazorApp1.Shared
-@inject viewModel viewModel
+﻿@using BlazorApp1.Client.features.addForm.presentation.quesitons
+@using BlazorApp1.Shared.questionTypes
+@using BlazorApp1.Shared
 
-<RadzenCard>
-    @foreach (Question q in viewModel.formOfQuestions)
+
+
+@foreach (Question question in @questionList)
+{
+    switch ((Question)question)
     {
-        <p>yo questions @q.question</p>
+        case TextQuestion:
+        <TextQuestionComposable></TextQuestionComposable>
+            break;
+            case NumberQuestion:
+        <NumberQuestionComposable></NumberQuestionComposable>
+            break;
+            case RadionButtonQuestion:
+        <RadioQuestionComposable></RadioQuestionComposable>
+            break;
+            case BooleanQuesiton:
+        <BooleanQuestionComposable></BooleanQuestionComposable>
+            break;
+            case MultiChoiceQuestion:
+        <MultiChoiceQuestionComposable></MultiChoiceQuestionComposable>
+            break;
+        default:
+            <p>connor fucked up here</p>
+            break;
     }
-</RadzenCard>
+}
 
+
+@code{
+    [Parameter]
+    public List<Question> questionList { get; set;}
+}

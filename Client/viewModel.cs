@@ -1,4 +1,5 @@
 ﻿using BlazorApp1.Shared;
+using BlazorApp1.Shared.questionTypes;
 
 namespace BlazorApp1.Client
 {
@@ -11,14 +12,30 @@ namespace BlazorApp1.Client
 
         public string? questionBeingAdded { get; set; }
 
-        public void addQuestionToForm() { 
-            formOfQuestions.Add(new Question { 
-                ID = 1,
-                question = "asdf"
-            });
+        public void addQuestionToForm(QuestionType quesitonType) {
+        switch (quesitonType)
+            {
+                case QuestionType.TextQuestion:
+                    formOfQuestions.Add(new TextQuestion());
+                    break;
+                case QuestionType.NumberQuestion:
+                    formOfQuestions.Add(new NumberQuestion());
+                    break;
+                case QuestionType.MultiChoice:
+                    formOfQuestions.Add(new MultiChoiceQuestion());
+                    break;
+                case QuestionType.RadioQuestion:
+                    formOfQuestions.Add(new RadionButtonQuestion());
+                    break;
+                case QuestionType.BooleanQuestion:
+                    formOfQuestions.Add(new BooleanQuesiton());
+                    break;
+                default:
+                    formOfQuestions.Add(new Question());
+                    break;
+            }
         }
-
-
+            
         public void removeQuestionFromList(string questionToRemove)
         {
            
