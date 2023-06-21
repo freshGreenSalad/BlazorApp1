@@ -1,12 +1,17 @@
 ﻿<div class="p-1">
     <RadzenCard>
+        <RadzenText>@quesitonNumber</RadzenText>
         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
             Enter your Text Question
         </RadzenText>
-        <RadzenTextArea Placeholder="Enter here..." />
+        <RadzenTextArea @bind-Value=@QuestionText Placeholder="Enter here..." />
     </RadzenCard>
 </div>
 
 @code {
+    [Parameter]
+    public int quesitonNumber { get; set; }
+
+    private string QuestionText { get; set; }
 
 }

@@ -10,6 +10,8 @@ namespace BlazorApp1.Shared
     {
         public string? question { get; set; }
 
+        public int QuestionNumber { get; set; }
+
         public QuestionType questionType { get; set; }
 
         public int ID { get; set; }

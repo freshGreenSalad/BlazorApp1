@@ -1,6 +1,7 @@
 ﻿@using BlazorApp1.Client.features.addForm.presentation.quesitons
 @using BlazorApp1.Shared.questionTypes
 @using BlazorApp1.Shared
+@using System.Collections.Generic;
 
 
 
@@ -9,7 +10,7 @@
     switch ((Question)question)
     {
         case TextQuestion:
-        <TextQuestionComposable></TextQuestionComposable>
+        <TextQuestionComposable quesitonNumber="question.QuestionNumber"></TextQuestionComposable>
             break;
             case NumberQuestion:
         <NumberQuestionComposable></NumberQuestionComposable>
@@ -34,3 +35,4 @@
     [Parameter]
     public List<Question> questionList { get; set;}
 }
+

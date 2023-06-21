@@ -16,7 +16,10 @@ namespace BlazorApp1.Client
         switch (quesitonType)
             {
                 case QuestionType.TextQuestion:
-                    formOfQuestions.Add(new TextQuestion());
+                    formOfQuestions.Add(new TextQuestion
+                    {
+                        QuestionNumber = formOfQuestions.Count + 1
+                    }); ;
                     break;
                 case QuestionType.NumberQuestion:
                     formOfQuestions.Add(new NumberQuestion());
