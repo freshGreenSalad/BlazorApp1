@@ -1,7 +1,7 @@
 global using BlazorApp1.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorApp1.Server.data;
-global using BlazorApp1.Server.Servces.QuestionService;
+global using BlazorApp1.Server.Servces.FormService;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +13,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DataContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.AddScoped<IQuestionService, QuestionService>();
+builder.Services.AddScoped<IFormService, FormService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,8 +1,8 @@
 ﻿@page "/createForm"
-@using BlazorApp1.Client.features.addForm.presentation
+@*@using BlazorApp1.Client.features.addForm.presentation;*@
 @inject viewModel viewModel
 
 <CreateFormComponent 
 	onClick=@((args) => viewModel.addQuestionToForm(args))
 	questionList=@viewModel.formOfQuestions
-/>
+	SetQuestion=@((args) => viewModel.UpdateQuestion(args)) />

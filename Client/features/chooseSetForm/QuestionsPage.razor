@@ -1,0 +1,20 @@
+﻿@using BlazorApp1.Client.features.addForm.data.services.FormService
+
+@page "/questions"
+@inject IFormService formService
+
+<PageTitle>Index</PageTitle>
+
+<RadzenButton Click=@SendForm>send that shit (FORM)</RadzenButton>
+
+@code {
+	
+
+	protected async void SendForm()
+	{
+		Console.WriteLine("send form block button");
+
+		await formService.PostForms();
+	}
+}
+

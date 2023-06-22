@@ -8,5 +8,6 @@ namespace BlazorApp1.Shared.questionTypes
 {
     public class MultiChoiceQuestion : Question
     {
+        public List<String> listOfMultiChoiceQuestions = new List<String>();
     }
 }

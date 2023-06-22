@@ -1,0 +1,30 @@
+﻿@using BlazorApp1.Shared.questionTypes
+@using BlazorApp1.Shared
+
+<div class="p-1">
+    <RadzenCard>
+        <RadzenText>@quesitonNumber</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
+            Enter your Number Question
+        </RadzenText>
+        <RadzenTextArea @bind-Value=@QuestionText Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
+    </RadzenCard>
+</div>
+
+@code {
+    [Parameter]
+    public int quesitonNumber { get; set; }
+
+    private string? QuestionText { get; set; }
+
+    [Parameter]
+    public EventCallback<Question> SetQuestion { get; set; }
+
+    private async Task SetQuestionLocal() => await SetQuestion.InvokeAsync(
+        new NumberQuestion
+            {
+                QuestionNumber = quesitonNumber,
+                question = QuestionText
+            }
+    );
+}

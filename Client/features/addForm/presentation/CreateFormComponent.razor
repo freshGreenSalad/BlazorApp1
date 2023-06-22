@@ -1,13 +1,15 @@
-﻿@using BlazorApp1.Client.features.addForm.presentation
+﻿@using BlazorApp1.Client.features.addForm.presentation.QuestionList
+@using BlazorApp1.Client.features.addForm.presentation.RightSideAddQuestionCard
+@using BlazorApp1.Client.features.addForm.presentation
 @using BlazorApp1.Shared
 
 <div class="row">
     <div class="col-8">
-        <QuestionHolder questionList=@questionList/>
+        <QuestionHolder questionList=@questionList SetQuestion=@SetQuestion />
     </div>
     <div class="col-1"></div>
     <div class="col-3">
-        <AddQuestionBox onClick=@onClick />
+        <AddQuestionBox onClick=@onClick/>
     </div>
 </div>
 
@@ -17,4 +19,7 @@
 
     [Parameter]
     public List<Question> questionList { get; set; }
+
+    [Parameter]
+    public EventCallback<Question> SetQuestion { get; set; }
 }

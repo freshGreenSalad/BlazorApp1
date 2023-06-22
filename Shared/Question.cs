@@ -12,8 +12,6 @@ namespace BlazorApp1.Shared
 
         public int QuestionNumber { get; set; }
 
-        public QuestionType questionType { get; set; }
-
         public int ID { get; set; }
     }
 }

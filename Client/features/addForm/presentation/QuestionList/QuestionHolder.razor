@@ -1,0 +1,45 @@
+﻿@using BlazorApp1.Client.features.addForm.presentation.QuestionList
+@using BlazorApp1.Client.features.addForm.presentation.QuestionList.quesitons.RadioOption
+@using BlazorApp1.Client.features.addForm.presentation.QuestionList.quesitons
+@using BlazorApp1.Shared.questionTypes
+@using BlazorApp1.Shared
+@using System.Collections.Generic;
+
+<div style="height:500px;overflow-y:scroll">
+    @foreach (Question question in @questionList ?? new List<Question>())
+    {
+        switch ((Question)question)
+        {
+            case TextQuestion:
+                <TextQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></TextQuestionComposable>
+                break;
+            case NumberQuestion:
+                <NumberQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></NumberQuestionComposable>
+                break;
+            case RadionButtonQuestion:
+                <RadioQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></RadioQuestionComposable>
+                break;
+            case BooleanQuesiton:
+                <BooleanQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></BooleanQuestionComposable>
+                break;
+            case MultiChoiceQuestion:
+                <MultiChoiceQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></MultiChoiceQuestionComposable>
+                break;
+            default:
+                <p>connor fucked up here</p>
+                break;
+        }
+    }
+</div>
+
+
+
+
+@code{
+    [Parameter]
+    public List<Question>? questionList { get; set;}
+
+    [Parameter]
+    public EventCallback<Question> SetQuestion { get; set; }
+}
+
