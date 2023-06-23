@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="features\addForm\data\" />
     <Folder Include="features\addForm\viewModel\" />
   </ItemGroup>
 

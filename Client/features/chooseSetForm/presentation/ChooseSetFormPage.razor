@@ -1,6 +1,6 @@
-﻿@using BlazorApp1.Client.features.addForm.data.services.FormService
+﻿@using BlazorApp1.Client.common.services.FormService
 
-@page "/questions"
+@page "/chooseSetForm"
 @inject IFormService formService
 
 <PageTitle>Index</PageTitle>
@@ -8,7 +8,7 @@
 <RadzenButton Click=@SendForm>send that shit (FORM)</RadzenButton>
 
 @code {
-	
+
 
 	protected async void SendForm()
 	{
@@ -17,4 +17,3 @@
 		await formService.PostForms();
 	}
 }
-
