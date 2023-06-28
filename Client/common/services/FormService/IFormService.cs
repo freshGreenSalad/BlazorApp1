@@ -1,9 +1,12 @@
-﻿namespace BlazorApp1.Client.common.services.FormService
+﻿using BlazorApp1.Shared;
+
+namespace BlazorApp1.Client.common.services.FormService
 {
     public interface IFormService
     {
-        Task GetForms();
+		public List<Form> formList { get; set; }
+		Task GetForms();
 
-        Task PostForms();
+        Task PostForms(Form form );
     }
 }

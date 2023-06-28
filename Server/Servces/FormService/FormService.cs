@@ -16,26 +16,18 @@
 			}
 			else
 			{
-				var Forms = await _context.Forms.ToListAsync();
+				var Forms = await _context.Forms
+					.Include(a=> a.QuestionList)
+					.ToListAsync();
 				return Forms;
 			}
 		}
 
-		public async Task Put()
+		public async Task Put(Form form)
 		{
 			Console.WriteLine("in the form service put block ");
 
-			_context.Add(
-				new Form { 
-					QuestionList = new List<Question>
-					{
-						new Question
-						{
-							question = "question one in test list "
-						}
-					}
-				}
-			);
+			_context.Add(form);
 			_context.SaveChanges();
 		}
 	}

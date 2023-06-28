@@ -1,5 +1,4 @@
-﻿@using BlazorApp1.Shared.questionTypes
-@using BlazorApp1.Shared
+﻿@using BlazorApp1.Shared
 
 <div class="p-1">
 	<RadzenCard>
@@ -25,6 +24,4 @@
 	public EventCallback<QuestionType> onClick { get; set; }
 
 	private async Task invokeClick() => await onClick.InvokeAsync(questionType);
-
-	//private Question question = new Question();
 }

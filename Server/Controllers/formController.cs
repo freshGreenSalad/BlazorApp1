@@ -23,10 +23,11 @@ namespace BlazorApp1.Server.Controllers
 		}
 
 		[HttpPost]
-		public async Task put()
+		public async Task put(Form form)
 		{
 			Console.WriteLine("in the form controller put block ");
-			await _FormService.Put();
+
+			await _FormService.Put(form);
 		}
 	}
 }

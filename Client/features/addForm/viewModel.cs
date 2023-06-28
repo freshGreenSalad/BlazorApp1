@@ -1,6 +1,5 @@
 ﻿
 using BlazorApp1.Shared;
-using BlazorApp1.Shared.questionTypes;
 
 namespace BlazorApp1.Client.features.addForm
 {
@@ -10,45 +9,13 @@ namespace BlazorApp1.Client.features.addForm
 
         public void addQuestionToForm(QuestionType quesitonType)
         {
-            switch (quesitonType)
-            {
-                case QuestionType.TextQuestion:
-                    formOfQuestions.Add(new TextQuestion
-                    {
-                        QuestionNumber = formOfQuestions.Count + 1
-                    });
-                    break;
-                case QuestionType.NumberQuestion:
-                    formOfQuestions.Add(new NumberQuestion
-                    {
-                        QuestionNumber = formOfQuestions.Count + 1
-                    });
-                    break;
-                case QuestionType.MultiChoice:
-                    formOfQuestions.Add(new MultiChoiceQuestion
-                    {
-                        QuestionNumber = formOfQuestions.Count + 1
-                    });
-                    break;
-                case QuestionType.RadioQuestion:
-                    formOfQuestions.Add(new RadionButtonQuestion
-                    {
-                        QuestionNumber = formOfQuestions.Count + 1
-                    });
-                    break;
-                case QuestionType.BooleanQuestion:
-                    formOfQuestions.Add(new BooleanQuesiton
-                    {
-                        QuestionNumber = formOfQuestions.Count + 1
-                    });
-                    break;
-                default:
-                    formOfQuestions.Add(new Question
-                    {
-                        QuestionNumber = formOfQuestions.Count + 1
-                    });
-                    break;
-            }
+            formOfQuestions.Add(
+                new Question
+                {
+                    QuestionNumber = formOfQuestions.Count + 1,
+                    QuestionType = quesitonType,
+                }
+            );
         }
 
         public void UpdateQuestion(Question question)
@@ -63,6 +30,13 @@ namespace BlazorApp1.Client.features.addForm
             {
                 Console.WriteLine(question.ToString());
             }
+        }
+
+        public  Form buildForm() {
+            return new Form
+            {
+                QuestionList = formOfQuestions,
+            };
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<div>
     <div class="row p-1">
         <div class="col-9">
-            <RadzenText Change=@valueChangeSoSaveQuestion()>@Answer</RadzenText>
+            <RadzenText >@Answer</RadzenText>
         </div>
         <div class="col-1">
             <RadzenButton class="" Click=@onclick>
@@ -12,14 +12,8 @@
 </div>
 
 @code {
-   // [Parameter]
-   // public string? Number { get; set; }
-
     [Parameter]
     public EventCallback onclick { get; set;  }
-
-    [Parameter]
-    public Func<Task> valueChangeSoSaveQuestion { get; set; }
 
     [Parameter]
 	public string? Answer { get; set; }

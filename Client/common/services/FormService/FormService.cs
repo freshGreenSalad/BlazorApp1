@@ -5,7 +5,7 @@ namespace BlazorApp1.Client.common.services.FormService
 {
     public class FormService : IFormService
     {
-        public List<Form> formList { get; set; }
+        public List<Form> formList { get; set; } = new List<Form>();
 
         private readonly HttpClient _http;
 
@@ -18,7 +18,7 @@ namespace BlazorApp1.Client.common.services.FormService
 
         public async Task GetForms()
         {
-            var respose = await _http.GetFromJsonAsync<List<Form>>("api/forms");
+            var respose = await _http.GetFromJsonAsync<List<Form>>("api/form");
             if (respose == null)
             {
                 formList = new List<Form>();
@@ -29,11 +29,12 @@ namespace BlazorApp1.Client.common.services.FormService
             }
         }
 
-        public async Task PostForms()
+        public async Task PostForms(Form form)
         {
-            Console.WriteLine("client post forms service ");
 
-            await _http.PostAsync("api/form", null);
+			Console.WriteLine("client post forms service ");
+
+            await _http.PostAsJsonAsync("api/form", form);
         }
     }
 }

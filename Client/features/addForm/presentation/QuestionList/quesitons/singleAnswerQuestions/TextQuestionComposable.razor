@@ -1,13 +1,12 @@
-﻿@using BlazorApp1.Shared.questionTypes
-@using BlazorApp1.Shared
+﻿@using BlazorApp1.Shared
 
 <div class="p-1">
     <RadzenCard>
         <RadzenText>@quesitonNumber</RadzenText>
         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
-            Enter your Boolean Question
+            Enter your Text Question
         </RadzenText>
-        <RadzenTextArea @bind-Value=@QuestionText Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
+        <RadzenTextArea @bind-Value=QuestionText Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
     </RadzenCard>
 </div>
 
@@ -15,15 +14,18 @@
     [Parameter]
     public int quesitonNumber { get; set; }
 
-    private string? QuestionText { get; set; }
+    [Parameter]
+    public string QuestionText { get; set; }
 
     [Parameter]
     public EventCallback<Question> SetQuestion { get; set; }
 
+    // although this is creating a new question it is replacing the old question
     private async Task SetQuestionLocal() => await SetQuestion.InvokeAsync(
-        new BooleanQuesiton
+        new Question
             {
                 QuestionNumber = quesitonNumber,
+                QuestionType = QuestionType.TextQuestion,
                 question = QuestionText
             }
     );

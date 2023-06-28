@@ -4,6 +4,7 @@ using BlazorApp1.Server.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp1.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230623071825_changedTheRequredAndLangthStuff")]
+    partial class changedTheRequredAndLangthStuff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,12 +52,7 @@ namespace BlazorApp1.Server.Migrations
                     b.Property<int>("QuestionNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("QuestionType")
-                        .HasColumnType("int");
-
                     b.Property<string>("question")
-                        .IsRequired()
-                        .HasMaxLength(10000)
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");

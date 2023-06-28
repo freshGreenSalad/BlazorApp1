@@ -1,21 +1,32 @@
-﻿@using BlazorApp1.Client.features.addForm.presentation.QuestionList.quesitons.RadioOption
-@using BlazorApp1.Shared.questionTypes
-@using BlazorApp1.Shared
+﻿@using BlazorApp1.Shared
 
 <div class="p-1">
     <RadzenCard>
         <RadzenText>@quesitonNumber</RadzenText>
-        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Enter your MultiChoice Question</RadzenText>
-        <RadzenTextArea @bind-Value=QuestionText Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
+
+        <RadzenText 
+            TextStyle="TextStyle.Subtitle2" 
+            TagName="TagName.H3">
+            Enter your Radio Button Question
+        </RadzenText>
+
+        <RadzenTextArea 
+            @bind-Value=QuestionText
+                        Change=@(args => SetQuestionLocal())
+                        Placeholder="Enter here..." />
+
         <hr>
 
-        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
-            Enter your multi choice answers (users can select multiple of these)
+        <RadzenText 
+            TextStyle="TextStyle.Subtitle2" 
+            TagName="TagName.H3">
+            Enter your RadioButton answers (users can only select one of these)
         </RadzenText>
 
         <div class="row">
             <div class="col-9 p-1">
-                <RadzenTextArea @bind-Value=questionBeingAdded Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
+                <RadzenTextArea @bind-Value=questionBeingAdded Change=@(args => SetQuestionLocal())
+                    Placeholder="Enter here..." />
             </div>
             <div class="col-3 p-1">
                 <RadzenButton Click=@(args => addQuestion(@questionBeingAdded?? "no val"))>
@@ -27,11 +38,10 @@
         @foreach (string quesiton in questionList)
         {
             <RadioOption 
-                onclick=@(args => removeQuestionFromList(quesiton)) 
-                Answer=@quesiton 
-                valueChangeSoSaveQuestion=@(() => SetQuestionLocal()) />
+                onclick=@(args => removeQuestionFromList(quesiton))
+                valueChangeSoSaveQuestion=@(() => SetQuestionLocal())
+                Answer=@quesiton />
         }
-
     </RadzenCard>
 </div>
 
@@ -45,7 +55,7 @@
     public List<string> questionList = new List<string>();
 
     private string? QuestionText { get; set; }
-    
+
     public string? questionBeingAdded { get; set; }
 
     public void removeQuestionFromList(string questionToRemove)
@@ -66,11 +76,12 @@
     }
 
     private async Task SetQuestionLocal() => await SetQuestion.InvokeAsync(
-        new MultiChoiceQuestion
+        new Question
             {
                 QuestionNumber = quesitonNumber,
                 question = QuestionText,
-                listOfMultiChoiceQuestions = questionList
+                listOfMultiChoiceQuestions = questionList,
+                QuestionType = QuestionType.RadioQuestion
             }
     );
 }

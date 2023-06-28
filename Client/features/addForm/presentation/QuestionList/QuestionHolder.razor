@@ -1,29 +1,32 @@
 ﻿@using BlazorApp1.Client.features.addForm.presentation.QuestionList
-@using BlazorApp1.Client.features.addForm.presentation.QuestionList.quesitons.RadioOption
-@using BlazorApp1.Client.features.addForm.presentation.QuestionList.quesitons
-@using BlazorApp1.Shared.questionTypes
+@using BlazorApp1.Client.features.addForm.presentation.QuestionList.quesitons.MultiChoiceQuestions
+@using BlazorApp1.Client.features.addForm.presentation.QuestionList.quesitons.singleAnswerQuestions
 @using BlazorApp1.Shared
 @using System.Collections.Generic;
 
 <div style="height:500px;overflow-y:scroll">
     @foreach (Question question in @questionList ?? new List<Question>())
     {
-        switch ((Question)question)
+        switch (question.QuestionType)
         {
-            case TextQuestion:
-                <TextQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></TextQuestionComposable>
+            case QuestionType.TextQuestion:
+                <TextQuestionComposable quesitonNumber="question.QuestionNumber" QuestionText="@question.question" SetQuestion="SetQuestion"></TextQuestionComposable>
                 break;
-            case NumberQuestion:
-                <NumberQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></NumberQuestionComposable>
+            case QuestionType.NumberQuestion:
+                <NumberQuestionComposable quesitonNumber="question.QuestionNumber" QuestionText="@question.question" SetQuestion="SetQuestion"></NumberQuestionComposable>
                 break;
-            case RadionButtonQuestion:
+            case QuestionType.RadioQuestion:
                 <RadioQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></RadioQuestionComposable>
                 break;
-            case BooleanQuesiton:
-                <BooleanQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></BooleanQuestionComposable>
+            case QuestionType.BooleanQuestion:
+                <BooleanQuestionComposable quesitonNumber="question.QuestionNumber" QuestionText="@question.question" SetQuestion="SetQuestion"></BooleanQuestionComposable>
                 break;
-            case MultiChoiceQuestion:
-                <MultiChoiceQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></MultiChoiceQuestionComposable>
+            case QuestionType.MultiChoice:
+                <MultiChoiceQuestionComposable 
+                    quesitonNumber="question.QuestionNumber"
+                    MainMultiChoiceQuestion="@question.question"
+                    listOfMultiChoiceAnswers="question.listOfMultiChoiceQuestions"
+                    SetQuestion="SetQuestion"/>
                 break;
             default:
                 <p>connor fucked up here</p>

@@ -5,6 +5,6 @@
 
 		Task<List<Form>> GetAll();
 
-		Task Put();
+		Task Put(Form form);
 	}
 }

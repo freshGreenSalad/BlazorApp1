@@ -1,8 +1,20 @@
-﻿@page "/createForm"
+﻿@using BlazorApp1.Client.common.services.FormService
+
+@page "/createForm"
 @*@using BlazorApp1.Client.features.addForm.presentation;*@
 @inject viewModel viewModel
+@inject IFormService formService
 
 <CreateFormComponent 
 	onClick=@((args) => viewModel.addQuestionToForm(args))
 	questionList=@viewModel.formOfQuestions
 	SetQuestion=@((args) => viewModel.UpdateQuestion(args)) />
+<RadzenButton Click=@sendForm ></RadzenButton>
+
+@code{
+	protected async void sendForm()
+	{
+		var form = viewModel.buildForm();
+		await formService.PostForms(form);
+	}
+}

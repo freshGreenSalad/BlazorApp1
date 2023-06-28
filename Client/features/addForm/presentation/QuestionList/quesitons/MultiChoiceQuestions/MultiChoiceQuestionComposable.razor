@@ -1,0 +1,77 @@
+﻿@using BlazorApp1.Client.features.addForm.presentation.QuestionList.quesitons.MultiChoiceQuestions
+@using BlazorApp1.Shared
+
+<div class="p-1">
+    <RadzenCard>
+        <RadzenText>@quesitonNumber</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Enter your MultiChoice Question</RadzenText>
+        <RadzenTextArea @bind-Value=MainMultiChoiceQuestion Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
+        <hr>
+
+        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
+            Enter your multi choice answers (users can select multiple of these)
+        </RadzenText>
+
+        <div class="row">
+            <div class="col-9 p-1">
+                <RadzenTextArea @bind-Value=currentMultiChoiceQuestion Placeholder="Enter here..." />
+            </div>
+            <div class="col-3 p-1">
+                <RadzenButton Click=@(args => addQuestion(currentMultiChoiceQuestion?? "no val"))>
+                    Add
+                </RadzenButton>
+            </div>
+        </div>
+
+        @foreach (string quesiton in listOfMultiChoiceAnswers ?? new List<string>())
+        {
+            <RadioOption 
+                onclick=@(args => removeQuestionFromList(quesiton)) 
+                Answer=@quesiton/>
+        }
+        </RadzenCard>
+</div>
+
+@code {
+    [Parameter]
+    public int quesitonNumber { get; set; }
+
+    [Parameter]
+    public EventCallback<Question> SetQuestion { get; set; }
+
+    [Parameter]
+    public List<string> listOfMultiChoiceAnswers { get; set; } 
+
+    [Parameter]
+    public string? MainMultiChoiceQuestion { get; set; }
+    
+    public string? currentMultiChoiceQuestion { get; set; }
+
+    private async Task SetQuestionLocal() => await SetQuestion.InvokeAsync(
+        new Question
+            {
+                QuestionNumber = quesitonNumber,
+                question = MainMultiChoiceQuestion,
+                listOfMultiChoiceQuestions = listOfMultiChoiceAnswers,
+                QuestionType = QuestionType.MultiChoice,
+            }
+    );
+}
+
+@code{
+    public void removeQuestionFromList(string questionToRemove)
+    {
+        listOfMultiChoiceAnswers.Remove(questionToRemove);
+    }
+
+    public void addQuestion(string questionToAdd)
+    {
+        if (questionToAdd == "no val" || questionToAdd == "")
+        {
+            return;
+        }
+        currentMultiChoiceQuestion = questionToAdd;
+        listOfMultiChoiceAnswers.Add(questionToAdd);
+        currentMultiChoiceQuestion = "";
+    }
+}
