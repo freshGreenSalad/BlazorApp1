@@ -4,9 +4,9 @@ namespace BlazorApp1.Server.Servces.FormService
 {
 	public interface IFormService
 	{
-
 		Task<List<Form>> GetAll();
-
-        Task Put (Form form);
+		Task<Form> GetMainForm();
+		Task Put (Form form);
+        Task PutMainForm (int id);
 	}
 }

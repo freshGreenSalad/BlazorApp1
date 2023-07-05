@@ -5,8 +5,16 @@ namespace BlazorApp1.Client.common.services.FormService
     public interface IFormService
     {
 		public List<Form> formList { get; set; }
+
+		public Form MainForm { get; set; }
 		Task GetForms();
 
-        Task PostForms(Form form );
-    }
+		Task GetMainForm();
+
+
+		Task PostForms(Form form );
+
+        Task setAsSentForm(int Id);
+
+	}
 }

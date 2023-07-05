@@ -4,20 +4,24 @@
 @page "/chooseSetForm"
 @inject IFormService formService
 
-<PageTitle>Index</PageTitle>
+<PageTitle>main form</PageTitle>
 
-<RadzenButton Click=@SendForm>Print forms to console</RadzenButton>
+<RadzenCard>
+
+	<RadzenText>Name of form @formService.MainForm.name</RadzenText>
+	<RadzenText>Date created @formService.MainForm.dateCreated</RadzenText>
+	<RadzenText>Amount Of Questions @formService.MainForm.QuestionList.Count().ToString()</RadzenText>
+
+</RadzenCard>
+
+<PageTitle>forms</PageTitle>
 
 @if (formService.formList.Count >= 1)
 {
-
 	@foreach (Form form in formService.formList)
 	{
-		@foreach (Question FormQuestion in @form.QuestionList)
-		{
-			<p>@FormQuestion.question</p>
-			<p>@FormQuestion.GetType().ToString()</p>
-		}
+		<FormCard choseForm=@((args)=>formService.setAsSentForm(args))
+			form=form/>
 	}
 } else
 {
@@ -30,18 +34,6 @@
 	protected override async Task OnInitializedAsync()
 	{
 		await formService.GetForms();
-	}
-
-	protected async void SendForm()
-	{
-	
-		foreach (Form form in formService.formList)
-		{
-			
-			Console.WriteLine(form.ToString());
-		//await formService.PostForms();
-		}
-		
-
+		await formService.GetMainForm();
 	}
 }

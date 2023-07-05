@@ -23,15 +23,54 @@
 			}
 		}
 
+		public async Task<Form> GetMainForm()
+		{
+			var mainFormId = await _context.MainForm.FirstOrDefaultAsync();
+			if (mainFormId == null)
+			{
+				return new Form();
+			}
+			else {
+				var mainForm = _context.Forms.Find(mainFormId.CurrentMainform);
+				return mainForm;
+			}
+		}
+
+
 		public async Task Put(Form form)
 		{
-			Console.WriteLine("in the form service put block - server");
-			//Console.WriteLine(form.QuestionList[0].listOfMultiChoiceQuestions[0]);
-            Console.WriteLine("in the form service put block end - server");
-
-
             _context.Add(form);
 			_context.SaveChanges();
+		}
+
+		public async Task PutMainForm(int id) {
+
+			Console.WriteLine(id.ToString());
+
+			var newMainForm = new mainform
+			{
+				CurrentMainform = id
+			};
+
+			if (_context.MainForm.Any())
+			{
+				Console.WriteLine("in if true");
+				var rows = from o in _context.MainForm
+						   select o;
+				foreach (var row in rows)
+				{
+					_context.MainForm.Remove(row);
+				}
+				_context.SaveChanges();
+				_context.MainForm.Add(newMainForm);
+				_context.SaveChanges();
+			}
+			else {
+				Console.WriteLine("in if else");
+
+				_context.MainForm.Add(newMainForm);
+				_context.SaveChanges();
+			}
 		}
 	}
 }

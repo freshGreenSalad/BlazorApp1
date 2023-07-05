@@ -5,7 +5,7 @@
 namespace BlazorApp1.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class removeQuestionTypeFromQuestion : Migration
+    public partial class addedMainForm : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
