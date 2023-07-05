@@ -10,7 +10,8 @@
 {
 	@foreach (Form form in formService.formList)
 	{
-		<FormCard form=form></FormCard>
+		<FormCard choseForm=@((args)=>formService.setAsSentForm(args))
+			form=form/>
 	}
 } else
 {

@@ -6,11 +6,16 @@
 	<RadzenText>Date created @form.dateCreated</RadzenText>
 	<RadzenText>Amount Of Questions @form.QuestionList.Count().ToString()</RadzenText>
 
-	<RadzenButton>update</RadzenButton>
+	<RadzenButton Click=@ChooseFormLocal>update</RadzenButton>
 	<RadzenButton>set as the Form Users will see</RadzenButton>
 </RadzenCard>
 
 @code {
 	[Parameter]
 	public Form form { get; set; }
+
+	[Parameter]
+	public EventCallback<int> choseForm { get; set; }
+
+	private async Task ChooseFormLocal() => await choseForm.InvokeAsync(form.ID);
 }

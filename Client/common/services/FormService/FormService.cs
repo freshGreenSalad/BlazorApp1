@@ -29,6 +29,10 @@ namespace BlazorApp1.Client.common.services.FormService
             }
         }
 
+        public async Task setAsSentForm(int Id) {
+            await _http.PostAsJsonAsync("api/form", Id);
+        }
+
         public async Task PostForms(Form form)
         {
 

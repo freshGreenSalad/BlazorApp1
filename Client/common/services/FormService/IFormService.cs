@@ -8,5 +8,8 @@ namespace BlazorApp1.Client.common.services.FormService
 		Task GetForms();
 
         Task PostForms(Form form );
-    }
+
+        Task setAsSentForm(int Id);
+
+	}
 }
