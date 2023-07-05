@@ -32,9 +32,15 @@ namespace BlazorApp1.Client.common.services.FormService
         public async Task PostForms(Form form)
         {
 
-			Console.WriteLine("client post forms service ");
+			Console.WriteLine("client post forms service, client ");
+            Console.WriteLine(form.QuestionList[0].listOfMultiChoiceQuestions.Count().ToString());
+            foreach (var question in form.QuestionList[0].listOfMultiChoiceQuestions) {
+                Console.WriteLine(question);
+            }
 
-            await _http.PostAsJsonAsync("api/form", form);
+            var result = await _http.PostAsJsonAsync("api/form", form).ConfigureAwait(false);
+
+            Console.WriteLine(result.StatusCode.ToString());
         }
     }
 }

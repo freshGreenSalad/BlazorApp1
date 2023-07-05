@@ -4,6 +4,7 @@ using BlazorApp1.Server.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp1.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230704213736_ADDEDINDIVIDUALMULTIQUESTIONS")]
+    partial class ADDEDINDIVIDUALMULTIQUESTIONS
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,16 +46,11 @@ namespace BlazorApp1.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("QuestionID")
-                        .HasColumnType("int");
-
                     b.Property<string>("question")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("QuestionID");
 
                     b.ToTable("individualMultiChoiceQuestion");
                 });
@@ -86,13 +84,6 @@ namespace BlazorApp1.Server.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("BlazorApp1.Shared.IndividualMultichoiceQuestion", b =>
-                {
-                    b.HasOne("BlazorApp1.Shared.Question", null)
-                        .WithMany("listOfMultiChoiceQuestions")
-                        .HasForeignKey("QuestionID");
-                });
-
             modelBuilder.Entity("BlazorApp1.Shared.Question", b =>
                 {
                     b.HasOne("BlazorApp1.Shared.Form", null)
@@ -103,11 +94,6 @@ namespace BlazorApp1.Server.Migrations
             modelBuilder.Entity("BlazorApp1.Shared.Form", b =>
                 {
                     b.Navigation("QuestionList");
-                });
-
-            modelBuilder.Entity("BlazorApp1.Shared.Question", b =>
-                {
-                    b.Navigation("listOfMultiChoiceQuestions");
                 });
 #pragma warning restore 612, 618
         }

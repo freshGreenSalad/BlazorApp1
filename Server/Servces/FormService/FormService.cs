@@ -25,9 +25,12 @@
 
 		public async Task Put(Form form)
 		{
-			Console.WriteLine("in the form service put block ");
+			Console.WriteLine("in the form service put block - server");
+			//Console.WriteLine(form.QuestionList[0].listOfMultiChoiceQuestions[0]);
+            Console.WriteLine("in the form service put block end - server");
 
-			_context.Add(form);
+
+            _context.Add(form);
 			_context.SaveChanges();
 		}
 	}

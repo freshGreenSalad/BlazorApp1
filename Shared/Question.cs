@@ -21,6 +21,7 @@ namespace BlazorApp1.Shared
 
         public int ID { get; set; }
 
-        public List<string> listOfMultiChoiceQuestions = new List<string>();
+        public List<IndividualMultichoiceQuestion> listOfMultiChoiceQuestions { get; set; } = new List<IndividualMultichoiceQuestion>();
+
     }
 }

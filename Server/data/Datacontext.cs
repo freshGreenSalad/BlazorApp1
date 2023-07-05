@@ -1,4 +1,6 @@
 ﻿
+using BlazorApp1.Shared;
+
 namespace BlazorApp1.Server.data
 {
     public class DataContext : DbContext
@@ -9,5 +11,8 @@ namespace BlazorApp1.Server.data
         public DbSet<Question>? Questions { get; set; }
 
         public DbSet<Form>? Forms { get; set; }
+        public DbSet<IndividualMultichoiceQuestion>? individualMultiChoiceQuestion { get; set; }
+
+        
     }
 }

@@ -1,10 +1,12 @@
-﻿namespace BlazorApp1.Server.Servces.FormService
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace BlazorApp1.Server.Servces.FormService
 {
 	public interface IFormService
 	{
 
 		Task<List<Form>> GetAll();
 
-		Task Put(Form form);
+        Task Put (Form form);
 	}
 }

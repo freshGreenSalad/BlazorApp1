@@ -23,11 +23,11 @@
             </div>
         </div>
 
-        @foreach (string quesiton in listOfMultiChoiceAnswers ?? new List<string>())
+        @foreach (IndividualMultichoiceQuestion quesiton in listOfMultiChoiceAnswers ?? new List<IndividualMultichoiceQuestion>())
         {
             <RadioOption 
                 onclick=@(args => removeQuestionFromList(quesiton)) 
-                Answer=@quesiton/>
+                Answer=@quesiton.question/>
         }
         </RadzenCard>
 </div>
@@ -40,7 +40,7 @@
     public EventCallback<Question> SetQuestion { get; set; }
 
     [Parameter]
-    public List<string> listOfMultiChoiceAnswers { get; set; } 
+    public List<IndividualMultichoiceQuestion> listOfMultiChoiceAnswers { get; set; }
 
     [Parameter]
     public string? MainMultiChoiceQuestion { get; set; }
@@ -59,7 +59,7 @@
 }
 
 @code{
-    public void removeQuestionFromList(string questionToRemove)
+    public void removeQuestionFromList(IndividualMultichoiceQuestion questionToRemove)
     {
         listOfMultiChoiceAnswers.Remove(questionToRemove);
     }
@@ -71,7 +71,7 @@
             return;
         }
         currentMultiChoiceQuestion = questionToAdd;
-        listOfMultiChoiceAnswers.Add(questionToAdd);
+        listOfMultiChoiceAnswers.Add(new IndividualMultichoiceQuestion { question = questionToAdd });
         currentMultiChoiceQuestion = "";
     }
 }
