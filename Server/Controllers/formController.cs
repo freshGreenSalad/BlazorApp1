@@ -25,15 +25,7 @@ namespace BlazorApp1.Server.Controllers
 		[HttpPost]
 		public async Task put([FromBody]Form form)
 		{
-			
-            Console.WriteLine("in the form controller put block start");
-            Console.WriteLine(form.QuestionList[0].ToString());
-            Console.WriteLine(form.QuestionList[0].listOfMultiChoiceQuestions.Count().ToString());
-			Console.WriteLine(form.ToString());
-			Console.WriteLine("in the form controller put block end");
-
            await _FormService.Put(form);
-			
 		}
 	}
 }

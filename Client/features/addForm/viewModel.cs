@@ -7,6 +7,9 @@ namespace BlazorApp1.Client.features.addForm
     {
         public List<Question> formOfQuestions = new List<Question>();
 
+        public string formName { get; set; }
+        public string formDateCreated { get; set; }
+
         public void addQuestionToForm(QuestionType quesitonType)
         {
             formOfQuestions.Add(
@@ -24,6 +27,11 @@ namespace BlazorApp1.Client.features.addForm
             writeListToConsole();
         }
 
+        public void updateTitle(string title)
+        {
+            formName = title;
+        }
+
         private void writeListToConsole()
         {
             foreach (Question question in formOfQuestions)
@@ -35,6 +43,8 @@ namespace BlazorApp1.Client.features.addForm
         public  Form buildForm() {
             return new Form
             {
+                name = formName,
+                dateCreated = DateTime.Now.ToString("MM / dd / yyyy"),
                 QuestionList = formOfQuestions,
             };
         }

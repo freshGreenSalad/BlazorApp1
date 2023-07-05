@@ -6,18 +6,11 @@
 
 <PageTitle>Index</PageTitle>
 
-<RadzenButton Click=@SendForm>Print forms to console</RadzenButton>
-
 @if (formService.formList.Count >= 1)
 {
-
 	@foreach (Form form in formService.formList)
 	{
-		@foreach (Question FormQuestion in @form.QuestionList)
-		{
-			<p>@FormQuestion.question</p>
-			<p>@FormQuestion.GetType().ToString()</p>
-		}
+		<FormCard form=form></FormCard>
 	}
 } else
 {
@@ -30,18 +23,5 @@
 	protected override async Task OnInitializedAsync()
 	{
 		await formService.GetForms();
-	}
-
-	protected async void SendForm()
-	{
-	
-		foreach (Form form in formService.formList)
-		{
-			
-			Console.WriteLine(form.ToString());
-		//await formService.PostForms();
-		}
-		
-
 	}
 }

@@ -1,14 +1,15 @@
 ﻿@using BlazorApp1.Client.common.services.FormService
 
 @page "/createForm"
-@*@using BlazorApp1.Client.features.addForm.presentation;*@
 @inject viewModel viewModel
 @inject IFormService formService
 
 <CreateFormComponent 
 	onClick=@((args) => viewModel.addQuestionToForm(args))
 	questionList=@viewModel.formOfQuestions
-	SetQuestion=@((args) => viewModel.UpdateQuestion(args)) />
+	SetQuestion=@((args) => viewModel.UpdateQuestion(args)) 
+	setTitile=@((args) => viewModel.updateTitle(args))
+	title=@viewModel.formName/>
 <RadzenButton Click=@sendForm ></RadzenButton>
 
 @code{

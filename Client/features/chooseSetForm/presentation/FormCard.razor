@@ -1,0 +1,16 @@
+﻿@using BlazorApp1.Shared
+
+<RadzenCard>
+
+	<RadzenText>Name of form @form.name</RadzenText>
+	<RadzenText>Date created @form.dateCreated</RadzenText>
+	<RadzenText>Amount Of Questions @form.QuestionList.Count().ToString()</RadzenText>
+
+	<RadzenButton>update</RadzenButton>
+	<RadzenButton>set as the Form Users will see</RadzenButton>
+</RadzenCard>
+
+@code {
+	[Parameter]
+	public Form form { get; set; }
+}

@@ -4,6 +4,16 @@
 @using BlazorApp1.Shared
 
 <div class="row">
+    <div class="p-1">
+        <RadzenCard>
+            <RadzenText>Form Name</RadzenText>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
+                Enter your Text Question
+            </RadzenText>
+            <RadzenTextArea @bind-Value=title Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
+        </RadzenCard>
+    </div>
+
     <div class="col-8">
         <QuestionHolder questionList=@questionList SetQuestion=@SetQuestion />
     </div>
@@ -19,7 +29,17 @@
 
     [Parameter]
     public List<Question> questionList { get; set; }
+        
+    [Parameter]
+    public string title { get; set; }
 
     [Parameter]
     public EventCallback<Question> SetQuestion { get; set; }
+
+    [Parameter]
+    public EventCallback<string> setTitile { get; set; }
+
+    // although this is creating a new question it is replacing the old question
+    private async Task SetQuestionLocal() => await setTitile.InvokeAsync(title);
+
 }
