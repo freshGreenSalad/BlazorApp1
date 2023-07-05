@@ -4,7 +4,17 @@
 @page "/chooseSetForm"
 @inject IFormService formService
 
-<PageTitle>Index</PageTitle>
+<PageTitle>main form</PageTitle>
+
+<RadzenCard>
+
+	<RadzenText>Name of form @formService.MainForm.name</RadzenText>
+	<RadzenText>Date created @formService.MainForm.dateCreated</RadzenText>
+	<RadzenText>Amount Of Questions @formService.MainForm.QuestionList.Count().ToString()</RadzenText>
+
+</RadzenCard>
+
+<PageTitle>forms</PageTitle>
 
 @if (formService.formList.Count >= 1)
 {
@@ -24,5 +34,6 @@
 	protected override async Task OnInitializedAsync()
 	{
 		await formService.GetForms();
+		await formService.GetMainForm();
 	}
 }

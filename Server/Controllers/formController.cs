@@ -16,6 +16,14 @@ namespace BlazorApp1.Server.Controllers
 			_FormService = formService;
 		}
 
+		[HttpGet(template:"getMainForm")]
+		public async Task<ActionResult<Form>> GetMainForm()
+		{
+			var response = await _FormService.GetMainForm();
+			Console.WriteLine(response.ToString());
+			return Ok(response);
+		}
+
 		[HttpGet]
 		public async Task<ActionResult<List<Form>>> GetAll()
 		{
@@ -26,6 +34,14 @@ namespace BlazorApp1.Server.Controllers
 		public async Task put([FromBody]Form form)
 		{
            await _FormService.Put(form);
+		}
+		
+		[HttpPost(template: "setMainForm")]
+		public async Task putMainForm([FromBody]int id)
+		{
+			Console.WriteLine("putMainForm controller");
+
+			await _FormService.PutMainForm(id);
 		}
 	}
 }
