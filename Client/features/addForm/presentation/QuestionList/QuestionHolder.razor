@@ -16,7 +16,11 @@
                 <NumberQuestionComposable quesitonNumber="question.QuestionNumber" QuestionText="@question.question" SetQuestion="SetQuestion"></NumberQuestionComposable>
                 break;
             case QuestionType.RadioQuestion:
-                <RadioQuestionComposable quesitonNumber="question.QuestionNumber" SetQuestion="SetQuestion"></RadioQuestionComposable>
+                <RadioQuestionComposable 
+                    quesitonNumber="question.QuestionNumber"
+                    MainMultiChoiceQuestion="@question.question"
+                    listOfMultiChoiceAnswers="question.listOfMultiChoiceQuestions"
+                    SetQuestion="SetQuestion"/>
                 break;
             case QuestionType.BooleanQuestion:
                 <BooleanQuestionComposable quesitonNumber="question.QuestionNumber" QuestionText="@question.question" SetQuestion="SetQuestion"></BooleanQuestionComposable>

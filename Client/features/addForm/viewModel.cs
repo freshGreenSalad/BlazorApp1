@@ -22,6 +22,15 @@ namespace BlazorApp1.Client.features.addForm
             );
         }
 
+        void renumberlist()
+        {
+            var i = 1;
+                foreach (Question question in formOfQuestions) { 
+                question.QuestionNumber = i;
+                i++;
+            }
+        }
+
         public void UpdateQuestion(Question question)
         {
             formOfQuestions[question.QuestionNumber - 1] = question;

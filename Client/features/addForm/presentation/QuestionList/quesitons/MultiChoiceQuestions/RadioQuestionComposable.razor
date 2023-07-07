@@ -3,43 +3,29 @@
 <div class="p-1">
     <RadzenCard>
         <RadzenText>@quesitonNumber</RadzenText>
-
-        <RadzenText 
-            TextStyle="TextStyle.Subtitle2" 
-            TagName="TagName.H3">
-            Enter your Radio Button Question
-        </RadzenText>
-
-        <RadzenTextArea @bind-Value=MainMultiChoiceQuestion
-                        Change=@(args => SetQuestionLocal())
-                        Placeholder="Enter here..." />
-
+        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Enter your Radio Button Question</RadzenText>
+        <RadzenTextArea @bind-Value=MainMultiChoiceQuestion Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
         <hr>
 
-        <RadzenText 
-            TextStyle="TextStyle.Subtitle2" 
-            TagName="TagName.H3">
+        <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
             Enter your RadioButton answers (users can only select one of these)
         </RadzenText>
 
         <div class="row">
             <div class="col-9 p-1">
-                <RadzenTextArea @bind-Value=currentMultiChoiceQuestion Change=@(args => SetQuestionLocal())
-                    Placeholder="Enter here..." />
+                <RadzenTextArea @bind-Value=currentMultiChoiceQuestion Placeholder="Enter here..." />
             </div>
             <div class="col-3 p-1">
-                <RadzenButton Click=@(args => addQuestion(@currentMultiChoiceQuestion?? "no val"))>
+                <RadzenButton Click=@(args => addQuestion(currentMultiChoiceQuestion?? "no val"))>
                     Add
                 </RadzenButton>
             </div>
         </div>
 
-        @foreach (IndividualMultichoiceQuestion quesiton in listOfMultiChoiceAnswers)
+        @foreach (IndividualMultichoiceQuestion quesiton in listOfMultiChoiceAnswers ?? new List<IndividualMultichoiceQuestion>())
         {
-            <RadioOption 
-                onclick=@(args => removeQuestionFromList(quesiton))
-                valueChangeSoSaveQuestion=@(() => SetQuestionLocal())
-                Answer=@quesiton.question />
+            <RadioOption onclick=@(args => removeQuestionFromList(quesiton))
+                         Answer=@quesiton.question />
         }
     </RadzenCard>
 </div>
@@ -65,7 +51,7 @@
                 QuestionNumber = quesitonNumber,
                 question = MainMultiChoiceQuestion,
                 listOfMultiChoiceQuestions = listOfMultiChoiceAnswers,
-                QuestionType = QuestionType.MultiChoice,
+                QuestionType = QuestionType.RadioQuestion,
             }
     );
 }

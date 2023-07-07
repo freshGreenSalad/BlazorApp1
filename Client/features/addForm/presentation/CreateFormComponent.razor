@@ -78,6 +78,6 @@
     public EventCallback<string> setEmail { get; set; }
 
     // although this is creating a new question it is replacing the old question
-    private async Task SetEmailLocal() => await setTitile.InvokeAsync(title);
+    private async Task SetEmailLocal() => await setEmail.InvokeAsync(email);
 
 }
