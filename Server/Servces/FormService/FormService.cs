@@ -18,6 +18,7 @@
 			{
 				var Forms = await _context.Form
 					.Include(a=> a.QuestionList)
+					.ThenInclude(a => a.listOfMultiChoiceQuestions)
 					.ToListAsync();
 				return Forms;
 			}
@@ -25,13 +26,20 @@
 
 		public async Task<Form> GetMainForm()
 		{
-			var mainFormId = await _context.MainForm.FirstOrDefaultAsync();
+			var mainFormId = await _context.MainForm
+				.FirstOrDefaultAsync();
 			if (mainFormId == null)
 			{
 				return new Form();
 			}
 			else {
-				var mainForm = _context.Form.Find(mainFormId.CurrentMainform);
+				//var mainForm = _context.Form.Find(mainFormId.CurrentMainform);
+
+				var mainForm = await _context.Form
+					.Where(x => x.ID == mainFormId.CurrentMainform)
+					.Include(a => a.QuestionList)
+						.ThenInclude(a => a.listOfMultiChoiceQuestions)
+					.SingleOrDefaultAsync();
 				return mainForm;
 			}
 		}
