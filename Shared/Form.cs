@@ -10,6 +10,7 @@ namespace BlazorApp1.Shared
 	{
 		public int ID { get; set; }
 		public string name { get; set; }
+		public string email { get; set; }
 		public string dateCreated { get; set; }
 		public List<Question>? QuestionList { get; set; } = new List<Question>();
 	}

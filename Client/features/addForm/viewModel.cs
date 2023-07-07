@@ -8,6 +8,7 @@ namespace BlazorApp1.Client.features.addForm
         public List<Question> formOfQuestions = new List<Question>();
 
         public string formName { get; set; }
+        public string formEmail { get; set; }
         public string formDateCreated { get; set; }
 
         public void addQuestionToForm(QuestionType quesitonType)
@@ -30,6 +31,9 @@ namespace BlazorApp1.Client.features.addForm
         public void updateTitle(string title)
         {
             formName = title;
+        }public void updateEmail(string email)
+        {
+            formEmail = email;
         }
 
         private void writeListToConsole()
@@ -44,6 +48,7 @@ namespace BlazorApp1.Client.features.addForm
             return new Form
             {
                 name = formName,
+                email = formEmail,
                 dateCreated = DateTime.Now.ToString("MM / dd / yyyy"),
                 QuestionList = formOfQuestions,
             };

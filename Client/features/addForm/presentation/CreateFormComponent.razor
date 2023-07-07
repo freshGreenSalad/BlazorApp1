@@ -4,16 +4,45 @@
 @using BlazorApp1.Shared
 
 <div class="row">
-    <div class="p-1">
+    <div class="row">
+
+    <div class="col-6 p-2">
         <RadzenCard>
-            <RadzenText>Form Name</RadzenText>
-            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
-                Enter your Text Question
-            </RadzenText>
-            <RadzenTextArea @bind-Value=title Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
+            <div class="row">
+                <div class="col-2">
+                    <RadzenText>Name</RadzenText>
+                </div>
+                <div class="col-8">
+                    <RadzenTextArea @bind-Value=title 
+                    Change=@(args => SetTitleLocal()) 
+                    Placeholder="Enter your form name here..." 
+                    Rows=1
+                    Cols=40
+
+                    />
+                </div>
+            </div>
+        </RadzenCard>
+    </div>
+    
+    <div class="col-6 p-2">
+        <RadzenCard>
+            <div class="row">
+                <div class="col-2">
+                    <RadzenText>Email</RadzenText>
+                </div>
+                <div class="col-8">
+                    <RadzenTextArea @bind-Value=email 
+                    Rows=1
+                    Cols=40
+                    Change =@(args => SetEmailLocal()) 
+                    Placeholder="Enter email to send forms to here..." />
+                </div>
+            </div>
         </RadzenCard>
     </div>
 
+    </div>
     <div class="col-8">
         <QuestionHolder questionList=@questionList SetQuestion=@SetQuestion />
     </div>
@@ -32,6 +61,9 @@
         
     [Parameter]
     public string title { get; set; }
+    
+    [Parameter]
+    public string email { get; set; }
 
     [Parameter]
     public EventCallback<Question> SetQuestion { get; set; }
@@ -40,6 +72,12 @@
     public EventCallback<string> setTitile { get; set; }
 
     // although this is creating a new question it is replacing the old question
-    private async Task SetQuestionLocal() => await setTitile.InvokeAsync(title);
+    private async Task SetTitleLocal() => await setTitile.InvokeAsync(title);
+    
+    [Parameter]
+    public EventCallback<string> setEmail { get; set; }
+
+    // although this is creating a new question it is replacing the old question
+    private async Task SetEmailLocal() => await setTitile.InvokeAsync(title);
 
 }

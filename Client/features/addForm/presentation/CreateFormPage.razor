@@ -9,7 +9,10 @@
 	questionList=@viewModel.formOfQuestions
 	SetQuestion=@((args) => viewModel.UpdateQuestion(args)) 
 	setTitile=@((args) => viewModel.updateTitle(args))
-	title=@viewModel.formName/>
+	title=@viewModel.formName
+	setEmail=@((args=> viewModel.updateEmail(args)))
+	email=@viewModel.formEmail
+	/>
 <RadzenButton Click=@sendForm ></RadzenButton>
 
 @code{
