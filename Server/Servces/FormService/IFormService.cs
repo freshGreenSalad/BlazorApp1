@@ -8,5 +8,7 @@ namespace BlazorApp1.Server.Servces.FormService
 		Task<Form> GetMainForm();
 		Task Put (Form form);
         Task PutMainForm (int id);
+
+		Task DeleteForm(int Id);
 	}
 }

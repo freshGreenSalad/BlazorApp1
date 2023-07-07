@@ -16,5 +16,7 @@ namespace BlazorApp1.Client.common.services.FormService
 
         Task setAsSentForm(int Id);
 
+		Task DeleteForm(int Id);
+
 	}
 }

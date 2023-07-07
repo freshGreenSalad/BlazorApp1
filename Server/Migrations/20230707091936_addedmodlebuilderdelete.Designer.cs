@@ -3,6 +3,7 @@ using System;
 using BlazorApp1.Server.data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp1.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230707091936_addedmodlebuilderdelete")]
+    partial class addedmodlebuilderdelete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
@@ -37,7 +40,7 @@ namespace BlazorApp1.Server.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Form");
+                    b.ToTable("Forms");
                 });
 
             modelBuilder.Entity("BlazorApp1.Shared.IndividualMultichoiceQuestion", b =>
@@ -84,7 +87,7 @@ namespace BlazorApp1.Server.Migrations
 
                     b.HasIndex("FormID");
 
-                    b.ToTable("Question");
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("BlazorApp1.Shared.mainform", b =>
@@ -105,16 +108,14 @@ namespace BlazorApp1.Server.Migrations
                 {
                     b.HasOne("BlazorApp1.Shared.Question", null)
                         .WithMany("listOfMultiChoiceQuestions")
-                        .HasForeignKey("QuestionID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("QuestionID");
                 });
 
             modelBuilder.Entity("BlazorApp1.Shared.Question", b =>
                 {
                     b.HasOne("BlazorApp1.Shared.Form", null)
                         .WithMany("QuestionList")
-                        .HasForeignKey("FormID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FormID");
                 });
 
             modelBuilder.Entity("BlazorApp1.Shared.Form", b =>

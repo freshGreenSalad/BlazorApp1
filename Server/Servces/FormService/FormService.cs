@@ -10,13 +10,13 @@
 		}
 		public async Task<List<Form>> GetAll()
 		{
-			if (_context.Forms == null)
+			if (_context.Form == null)
 			{
 				return new List<Form>();
 			}
 			else
 			{
-				var Forms = await _context.Forms
+				var Forms = await _context.Form
 					.Include(a=> a.QuestionList)
 					.ToListAsync();
 				return Forms;
@@ -31,7 +31,7 @@
 				return new Form();
 			}
 			else {
-				var mainForm = _context.Forms.Find(mainFormId.CurrentMainform);
+				var mainForm = _context.Form.Find(mainFormId.CurrentMainform);
 				return mainForm;
 			}
 		}
@@ -71,6 +71,16 @@
 				_context.MainForm.Add(newMainForm);
 				_context.SaveChanges();
 			}
+		}
+
+		public async Task DeleteForm(int Id) {
+
+			Console.WriteLine(Id.ToString());
+
+			Form form = new Form() { ID = Id };
+			_context.Form.Attach(form);
+			_context.Form.Remove(form);
+			_context.SaveChanges();
 		}
 	}
 }

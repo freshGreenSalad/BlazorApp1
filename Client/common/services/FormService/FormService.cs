@@ -5,7 +5,13 @@ namespace BlazorApp1.Client.common.services.FormService
 {
     public class FormService : IFormService
     {
-        public List<Form> formList { get; set; } = new List<Form>();
+		public async Task DeleteForm(int ID) {
+			Console.WriteLine("in the client form");
+			Console.WriteLine(ID.ToString());
+
+			await _http.DeleteAsync("api/form/" + Convert.ToInt32(ID));
+		}
+		public List<Form> formList { get; set; } = new List<Form>();
         public Form MainForm { get; set; } = new Form();
 
         private readonly HttpClient _http;

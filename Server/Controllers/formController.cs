@@ -20,7 +20,10 @@ namespace BlazorApp1.Server.Controllers
 		public async Task<ActionResult<Form>> GetMainForm()
 		{
 			var response = await _FormService.GetMainForm();
-			Console.WriteLine(response.ToString());
+			if (response == null)
+			{
+				return new Form();
+			}
 			return Ok(response);
 		}
 
@@ -42,6 +45,13 @@ namespace BlazorApp1.Server.Controllers
 			Console.WriteLine("putMainForm controller");
 
 			await _FormService.PutMainForm(id);
+		}
+
+		[HttpDelete(template:"{id}")]
+		public async void Delete(int id)
+		{
+			Console.WriteLine("in the http delete");
+			await _FormService.DeleteForm(id);
 		}
 	}
 }

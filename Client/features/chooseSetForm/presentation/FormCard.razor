@@ -5,9 +5,17 @@
 	<RadzenText>Name of form @form.name</RadzenText>
 	<RadzenText>Date created @form.dateCreated</RadzenText>
 	<RadzenText>Amount Of Questions @form.QuestionList.Count().ToString()</RadzenText>
-
-	<RadzenButton Click=@ChooseFormLocal>update</RadzenButton>
-	<RadzenButton>set as the Form Users will see</RadzenButton>
+	<div class="row">
+		<div class="col-10">
+			<RadzenButton >update</RadzenButton>
+			<RadzenButton Click=@ChooseFormLocal>set as the Form Users will see</RadzenButton>
+		</div>
+		<div class="col-2">
+			<RadzenButton Click=@DeleteForm Text="Delete">
+				<RadzenIcon Icon="close"></RadzenIcon>
+			</RadzenButton>
+		</div>
+	</div>
 </RadzenCard>
 
 @code {
@@ -18,4 +26,10 @@
 	public EventCallback<int> choseForm { get; set; }
 
 	private async Task ChooseFormLocal() => await choseForm.InvokeAsync(form.ID);
+
+	[Parameter]
+	public EventCallback<int> deleteForm { get; set; }
+
+	private async Task DeleteForm() => await deleteForm.InvokeAsync(form.ID);
+
 }

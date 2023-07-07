@@ -20,7 +20,11 @@
 {
 	@foreach (Form form in formService.formList)
 	{
-		<FormCard choseForm=@((args)=>formService.setAsSentForm(args))
+		<FormCard 
+			choseForm=@((args)=>formService.setAsSentForm(args))
+			deleteForm=@(
+				(args=>formService.DeleteForm(args))
+			)
 			form=form/>
 	}
 } else
@@ -35,5 +39,13 @@
 	{
 		await formService.GetForms();
 		await formService.GetMainForm();
+
+		
+	}
+
+		 void writeToConsole()
+	{
+		Console.WriteLine("clicked delete");
+
 	}
 }
