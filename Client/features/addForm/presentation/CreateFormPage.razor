@@ -4,6 +4,8 @@
 @inject viewModel viewModel
 @inject IFormService formService
 
+<PageTitle>CreateForm</PageTitle>
+
 <CreateFormComponent 
 	onClick=@((args) => viewModel.addQuestionToForm(args))
 	questionList=@viewModel.formOfQuestions
@@ -13,7 +15,7 @@
 	setEmail=@((args=> viewModel.updateEmail(args)))
 	email=@viewModel.formEmail
 	/>
-<RadzenButton Click=@sendForm ></RadzenButton>
+<RadzenButton Click=@sendForm > Save Form</RadzenButton>
 
 @code{
 	protected async void sendForm()

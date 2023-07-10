@@ -6,7 +6,7 @@
         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
             Enter your Boolean Question
         </RadzenText>
-        <RadzenTextArea @bind-Value=@QuestionText Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
+        <RadzenTextArea @bind-Value=@QuestionText Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." Cols=40 />
     </RadzenCard>
 </div>
 

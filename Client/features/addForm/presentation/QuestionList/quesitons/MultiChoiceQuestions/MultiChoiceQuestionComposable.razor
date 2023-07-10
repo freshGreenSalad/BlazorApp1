@@ -5,7 +5,7 @@
     <RadzenCard>
         <RadzenText>@quesitonNumber</RadzenText>
         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Enter your MultiChoice Question</RadzenText>
-        <RadzenTextArea @bind-Value=MainMultiChoiceQuestion Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." />
+        <RadzenTextArea @bind-Value=MainMultiChoiceQuestion Change=@(args => SetQuestionLocal()) Placeholder="Enter here..." Cols=40 />
         <hr>
 
         <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="col-9 p-1">
-                <RadzenTextArea @bind-Value=currentMultiChoiceQuestion Placeholder="Enter here..." />
+                <RadzenTextArea @bind-Value=currentMultiChoiceQuestion Placeholder="Enter here..." Cols=40 />
             </div>
             <div class="col-3 p-1">
                 <RadzenButton Click=@(args => addQuestion(currentMultiChoiceQuestion?? "no val"))>

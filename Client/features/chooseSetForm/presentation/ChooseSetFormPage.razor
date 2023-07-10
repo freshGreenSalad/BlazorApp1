@@ -4,7 +4,9 @@
 @page "/chooseSetForm"
 @inject IFormService formService
 
-<PageTitle>main form</PageTitle>
+<PageTitle>ChooseMainForm</PageTitle>
+
+<div class="p-2">
 
 <RadzenCard>
 
@@ -13,19 +15,21 @@
 	<RadzenText>Amount Of Questions @formService.MainForm.QuestionList.Count().ToString()</RadzenText>
 
 </RadzenCard>
-
-<PageTitle>forms</PageTitle>
+</div>
 
 @if (formService.formList.Count >= 1)
 {
 	@foreach (Form form in formService.formList)
 	{
+		<div class="p-2">
+
 		<FormCard 
 			choseForm=@((args)=>formService.setAsSentForm(args))
 			deleteForm=@(
 				(args=>formService.DeleteForm(args))
 			)
 			form=form/>
+		</div>
 	}
 } else
 {

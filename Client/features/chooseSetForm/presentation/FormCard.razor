@@ -5,10 +5,6 @@
 	<RadzenText>Name of form @form.name</RadzenText>
 	<RadzenText>Date created @form.dateCreated</RadzenText>
 	<RadzenText>Amount Of Questions @form.QuestionList.Count().ToString()</RadzenText>
-	@foreach(Question question in form.QuestionList ?? new List<Question>()){
-		<RadzenText>@question.question</RadzenText>
-	}
-
 
 	<div class="row">
 		<div class="col-10">
